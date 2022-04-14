@@ -2,19 +2,19 @@
 Ce repo contient les fonctions a consommer par notre application iOS (chicky)
 
 # Construit avec
-*Javascript
-*NodeJs
-*MongoDB
-*ExpressJS
+*Javascript\
+*NodeJs\
+*MongoDB\
+*ExpressJS\
 # Requis
-Node-js
-Nodemon
+Node-js\
+Nodemon\
 # Usage
 1.Ouvrir terminal
 2.Ecrire les commandes :
-cd [emplacement du projet]
-npm install/n
-/n npm start
+cd [emplacement du projet]\
+npm install\
+npm start\
 # Auteurs
-Louay Ben Kasdallah
+Louay Ben Kasdallah\
 Monji Zitouni
