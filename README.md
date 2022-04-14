@@ -12,9 +12,9 @@ Nodemon
 # Usage
 1.Ouvrir terminal
 2.Ecrire les commandes :
-3.cd [emplacement du projet]
-4.npm install
-5.npm start
+cd [emplacement du projet]
+npm install/n
+/n npm start
 # Auteurs
 Louay Ben Kasdallah
 Monji Zitouni
