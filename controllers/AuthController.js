@@ -2,7 +2,6 @@ const Use   = require('../models/use')
 const bcrypt  =require('bcryptjs')
 const config = require("../config.json");
 const jwt    =require('jsonwebtoken')
-const { use } = require('../routes/users');
 const nodemailer = require('nodemailer');
 const Role = require('../middleware/role');
 
