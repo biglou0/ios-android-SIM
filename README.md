@@ -1,4 +1,4 @@
-# Serveur node backend Chicky
+# Serveur node backend E-PHARM
 Ce repo contient les fonctions a consommer par notre application iOS & ANDROID (E-PHARM)
 
 # Construit avec
