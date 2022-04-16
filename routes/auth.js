@@ -14,5 +14,7 @@ router.post('/registerpharm',Authpharm.registerpharm)
 router.post('/loginpharm',Authpharm.loginpharm)
 router.post("/reEnvoyerConfirmationEmail", AuthController.reEnvoyerConfirmationEmail);
 router.get("/confirmation/:token", AuthController.confirmation);
+router.post("/motDePasseOublie", AuthController.motDePasseOublie);
+router.put("/changerMotDePasse", AuthController.changerMotDePasse);
 
 module.exports= router

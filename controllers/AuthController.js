@@ -161,11 +161,80 @@ const login = async (req, res) => {
   };
 }
 
+const motDePasseOublie = async (req, res) => {
+  const codeDeReinit = Math.floor(Math.random() * 90000) + 10000;;
+  const utilisateur = await Use.findOne({ "email": req.body.email });
 
+  if (utilisateur) {
+    // token creation
+    const token = jwt.sign({ _id: utilisateur._id, email: utilisateur.email }, config.token_secret, {
+      expiresIn: "3600000", // in Milliseconds (3600000 = 1 hour)
+    });
+
+    envoyerEmailReinitialisation(req.body.email, token, codeDeReinit);
+
+    res.status(200).send({ "message": "L'email de reinitialisation a été envoyé a " + utilisateur.email })
+  } else {
+    res.status(404).send({ "message": "Utilisateur innexistant" })
+  }
+};
+
+async function envoyerEmailReinitialisation(email, token, codeDeReinit) {
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'testrapide45@gmail.com',
+      pass: 'biglou009'
+    }
+  });
+
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.log(error);
+      console.log("Server not ready");
+    } else {
+      console.log("Server is ready to take our messages");
+    }
+  });
+
+  const mailOptions = {
+    from: 'E-PHARM<testrapide45@gmail.com>',
+    to: email,
+    subject: 'Reinitialisation de votre mot de passe - E-pharm',
+    html: "<h3>Vous avez envoyé une requete de reinitialisation de mot de passe </h3><p>Entrez ce code dans l'application pour proceder : <b style='color : blue'>" + codeDeReinit + "</b></p>"
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent : ' + info.response);
+    }
+  });
+}
+
+
+const changerMotDePasse = async (req, res) => {
+  const { email, nouveauMotDePasse } = req.body;
+
+  nouveauMdpEncrypted = await bcrypt.hash(nouveauMotDePasse, 10);
+
+  let use = await Use.findOneAndUpdate(
+    { email: email },
+    {
+      $set: {
+        password : nouveauMdpEncrypted
+      }
+    }
+  );
+
+  res.send({ use });
+};
 
 
 
 
 module.exports ={
-register, login,reEnvoyerConfirmationEmail,confirmation
+register, login,reEnvoyerConfirmationEmail,confirmation,motDePasseOublie,changerMotDePasse
 }
