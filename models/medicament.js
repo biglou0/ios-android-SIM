@@ -17,20 +17,13 @@ const mediSchema = new Schema({
 
     },
   
-    photo : {
+    idPhoto : {
         type :String,
        
       
 
     },
-    categorie : {
-        type: String, 
-      
-        ref: 'cate'
-       
-      
-
-    }
+   
 
 } , {timestamps: true})
 
